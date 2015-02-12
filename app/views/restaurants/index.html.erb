@@ -1,7 +1,14 @@
-<img src="<%= @restaurant.picture_url %>" alt="Restaurant pic">
-	<h2><%= @restaurant.name %></h2>
-	<p><strong>Capacity:</strong><%= @restaurant.capacity %></p>
-	<p><strong>Hours:</strong><%= @restaurant.opens_at%> - <%= @restaurant.closes_at %></p>
-	<p><strong>Description</strong><%= @restaurant.description %></p>
-	<p><strong>Address</strong><%= @restaurant.address %></p>
-	<p><strong>Phone</strong><%= @restaurant.phone %></p>
+<h1>Restaurants</h1>
+
+<% @restaurants.each do |restaurant| %>
+
+	<p><strong>Picture:</strong><%= restaurant.picture_url %></p>
+	<h2><%= restaurant.name %></h2>
+	<p><strong>Capacity:</strong><%= restaurant.capacity %></p>
+	<p><strong>Hours:</strong><%= restaurant.opens_at%> - <%= restaurant.closes_at %></p>
+	
+	<p><strong>Description</strong><%= restaurant.description %></p>
+	<p><strong>Address</strong><%= restaurant.address %></p>
+	<p><strong>Phone</strong><%= restaurant.phone %></p>
+
+<% end %>
