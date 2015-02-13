@@ -1,14 +1,15 @@
-<h1>This is a collaboration Test!</h1>
-
+<h1>Restaurants</h1>
+<br>
 <% @restaurants.each do |restaurant| %>
 
+
+	<h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
 	<p><strong>Picture:</strong><%= restaurant.picture_url %></p>
-	<h2><%= restaurant.name %></h2>
 	<p><strong>Capacity:</strong><%= restaurant.capacity %></p>
 	<p><strong>Hours:</strong><%= restaurant.opens_at%> - <%= restaurant.closes_at %></p>
 	
 	<p><strong>Description: </strong><%= restaurant.description %></p>
 	<p><strong>Address: </strong><%= restaurant.address %></p>
 	<p><strong>Phone: </strong><%= restaurant.phone %></p>
-
+	<br>
 <% end %>

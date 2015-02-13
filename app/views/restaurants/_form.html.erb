@@ -6,10 +6,10 @@
 	<%= f.number_field :capacity %><br>
 
 	<%= f.label :opens_at %> 
-	<%= f.time_field :opens_at %>	<br>
+	<%= f.select(:opens_at, restaurant_time_options) %>	<br>
 
 	<%= f.label :closes_at %> 
-	<%= f.time_field :closes_at %><br>	
+	<%= f.number_field :closes_at %><br>	
 
 	<%= f.label :description %> 
 	<%= f.text_field :description %><br>	

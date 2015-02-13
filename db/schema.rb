@@ -15,7 +15,8 @@ ActiveRecord::Schema.define(version: 20150211190330) do
 
   create_table "reservations", force: :cascade do |t|
     t.integer  "party_size"
-    t.datetime "booking"
+    t.date     "date"
+    t.integer  "time"
     t.integer  "user_id"
     t.integer  "restaurant_id"
     t.datetime "created_at",    null: false
@@ -25,8 +26,8 @@ ActiveRecord::Schema.define(version: 20150211190330) do
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
     t.integer  "capacity"
-    t.time     "opens_at"
-    t.time     "closes_at"
+    t.integer  "opens_at"
+    t.integer  "closes_at"
     t.string   "picture_url"
     t.text     "description"
     t.string   "address"

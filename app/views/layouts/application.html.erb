@@ -5,8 +5,59 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <style type="text/css">
+  	.user-info {
+  		padding: 5px; 
+  		background: #000;
+  		width: 400px;
+  		border: thick solid tomato;
+  		margin-bottom: 25px;
+
+  		font-size: 1.3em;
+  		color: white;
+  		font-family: "Avenir", sans-serif;
+  	}
+
+  	a {
+  		color: tomato;
+      text-decoration: none;
+  	}
+    a:hover {
+      color:#000;
+    }
+  	.user-info a:hover {
+  		color: white;
+  	}
+
+
+
+  </style>
 </head>
 <body>
+<% if flash[:notice] %>
+    <p id="notice"><%= flash[:notice] %></p>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <p id="alert"><%= flash[:alert] %></p>
+  <% end %>
+
+	<div class="user-info" style="">
+		<% if current_user %>
+		<p>You are logged in as <%= current_user.name %> ID: <%= session[:user_id] %>| <%= link_to "Log Out", session_path("current"), :method => :delete %></p>
+		<% else %>
+			<%= link_to "Log In", new_session_path %> or
+			<%= link_to "Sign Up", new_user_path %>
+		<% end %>
+	</div>
+
+  <h1>Search</h1>
+<%= form_tag restaurants_search_path :method => 'get' do %>
+  <p>
+    <%= text_field_tag :search, params[:search] %>
+    <%= submit_tag "Search Restaurants", :name => nil %>
+  </p>
+<% end %>
 
 <%= yield %>
 

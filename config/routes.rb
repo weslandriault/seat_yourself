@@ -1,13 +1,15 @@
 Rails.application.routes.draw do
-  get 'users/show'
 
-  get 'users/new'
+  get '/restaurants/search' => 'restaurants#search'
+  post '/restaurants/search' => 'restaurants#search'
 
-  get 'users/edit'
+  resources :users, only: [:new, :edit, :show, :create, :update]
+    
+  resources :restaurants do
+    resources :reservations
+  end
 
-  get 'users/create'
-
-  resources :restaurants
+  resources :sessions, only: [:new, :create, :destroy]
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
