@@ -2,7 +2,6 @@
 <img src="<%= @restaurant.picture_url %>" alt="Restaurant pic">
 <h2><%= @restaurant.name %></h2>
 
-<p><strong>Owner: </strong><%= "nil" if @restaurant.user_id == nil %></p>
 <p><strong>Capacity: </strong><%= @restaurant.capacity %></p>
 <p><strong>Hours: </strong><%= pretty_time(@restaurant.opens_at)%> - <%= pretty_time(@restaurant.closes_at) %></p>
 <p><strong>Description: </strong><%= @restaurant.description %></p>
