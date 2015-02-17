@@ -33,7 +33,7 @@ puts "\nCreating reservations"
 	Reservation.create!(
 		party_size: [1,3,4,6,10].sample,
 		time: random_hour(9, 18),
-		date: Date.today,
+		date: Faker::Date.between(Date.today, 7.days.from_now),
 		user_id: User.all.sample.id,
 		restaurant_id: Restaurant.all.sample.id
 	)

@@ -14,14 +14,13 @@ class ReservationsController < ApplicationController
   	@reservation = @restaurant.reservations.new(reservation_params)  
   	# @reservation = Reservation.new(reservation_params)
   	@reservation.user = current_user
-    @reservation.restaurant = @restaurant
   	if @reservation.save
   		redirect_to restaurant_path(@restaurant)
   	else
-      flash[:alert] = @reservation.errors.full_messages.to_sentence
+      flash.now[:alert] = @reservation.errors.full_messages.to_sentence
       render :new
       
-
+      
     end
   end
 
@@ -38,6 +37,7 @@ class ReservationsController < ApplicationController
     if reservation.update_attributes(reservation_params)
       redirect_to restaurant_url(@restaurant)
     else
+      flash.now[:alert] = @reservation.errors.full_messages.to_sentence
       render :edit
     end
   end

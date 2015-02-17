@@ -1,20 +1,26 @@
 <h5><%= link_to "Back to Restaurants", restaurants_path %></h5>
 <img src="<%= @restaurant.picture_url %>" alt="Restaurant pic">
 <h2><%= @restaurant.name %></h2>
+
+<p><strong>Owner: </strong><%= "nil" if @restaurant.user_id == nil %></p>
 <p><strong>Capacity: </strong><%= @restaurant.capacity %></p>
 <p><strong>Hours: </strong><%= pretty_time(@restaurant.opens_at)%> - <%= pretty_time(@restaurant.closes_at) %></p>
 <p><strong>Description: </strong><%= @restaurant.description %></p>
 <p><strong>Address: </strong><%= @restaurant.address %></p>
 <p><strong>Phone: </strong><%= @restaurant.phone %></p>
-<p><%= link_to "Make A Reservation", new_restaurant_reservation_path(@restaurant, @reservation) %></p>
-<p> <%= link_to "Edit Your Restaurant", edit_restaurant_path(@restaurant) %></p>
-<p><%= link_to "Delete Your Restaurant", @restaurant, method: :delete, data: {confirm: "Are you sure you want to delete this restaurant?"} %>
-</p>
+
+<% if session[:user_id] == @restaurant.user_id %>
+	<p><%= link_to "Make A Reservation", new_restaurant_reservation_path(@restaurant, @reservation) %></p>
+	<p> <%= link_to "Edit Your Restaurant", edit_restaurant_path(@restaurant) %></p>
+	<p><%= link_to "Delete Your Restaurant", @restaurant, method: :delete, data: {confirm: "Are you sure you want to delete this restaurant?"} %>
+	</p>
+<% end %>
 
 <h2>Reservations</h2>
 <% @restaurant.reservations.each do |reservation| %>
 	<p><strong>Size of Party: </strong><%= reservation.party_size %></p>
-	<p><strong>Reservation Date: </strong><%= reservation.booking %></p>
+	<p><strong>Reservation Date: </strong><%= reservation.date %></p>
+	<p><strong>Reservation Time: </strong><%= pretty_time(reservation.time) %></p>
 	<p><strong>User ID: </strong><%= reservation.user_id %></p>
 	
 	<% if session[:user_id] == reservation.user_id %>

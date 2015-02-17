@@ -8,15 +8,16 @@ module ApplicationHelper
 			end
 		end
 
-		if resstaurant.opens_at == restaurant.closes_at
+		if restaurant.opens_at == restaurant.closes_at
 			(0..23).map do |hour|
 			[pretty_time(hour), hour]
+			end
 		elsif restaurant.closes_at < restaurant.opens_at
 			times = restaurant_times(0, restaurant.closes_at).concat(restaurant_times(restaurant.opens_at, 23))	
 		else times = (restaurant.opens_at...restaurant.closes_at).map do |hour|
 			[pretty_time(hour), hour]
 			end
-		times
+			times
 		end
 	end
 
